@@ -1,5 +1,5 @@
 .Post {
-    width: 100px;
+    width: 20%;
     padding: 16px;
     text-align: center;
     border: 1px solid #eee;
@@ -17,4 +17,16 @@
 .Author {
     margin: 16px 0;
     color: #ccc;
+}
+
+@media (max-width: 799px) {
+    .Post {
+        width: 45%;
+    }
+}
+
+@media (max-width: 499px) {
+    .Post {
+        width: 80%;
+    }
 }
