@@ -44,3 +44,32 @@ sama halnya melakukan request di inisiasi component. Saat melakukan update compo
         }
     }
 ```
+
+### Best practice untuk `http request` axios
+
+Ada berbagai cara untuk melakukan request http menggunakan package `axios` di react. bisa langsung menggunakan `import axios from 'axios'`. Tetapi, hal tersebut akan melakukan pengulang - ulangan code. Karena setiap API mungkin mempunya konfigurasi yang berbeda.
+
+- Kalau di Set global? misal di index.js? 
+> Tidak bagus juga, karena ya itu, setiap API mungkin memiliki config yang berbeda2. 
+
+- Bagaimana yang terbaik? **Menggunakan Method Instance**
+
+example, `common/api.service.js`
+```js
+import axios from 'axios';
+
+const http = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+});
+
+http.defaults.headers.common['Authorization'] = 'API-KEY';
+http.defaults.headers.post['Content-Type'] = 'application/json';
+
+export default http;
+```
+
+baru setelah itu bisa di import di file lain,
+```js
+import axios from './common/api.service'
+// then call axios as reguler way 
+```
