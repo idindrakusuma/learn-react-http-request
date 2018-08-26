@@ -3,7 +3,11 @@
 ## Rangkuman Belajar
 
 ## Permulaan
-Untuk mendapatkan sample dari API dengan respon `.json`, bisa diakses di https://jsonplaceholder.typicode.com/
+- Untuk mendapatkan sample dari API dengan respon `.json`, bisa diakses di https://jsonplaceholder.typicode.com/
+- Untuk http requestnya menggunakan package `axios`. 
+see documentation axios at https://github.com/axios/axios
+
+
 
 ### Kapan waktu terbaik melakukan request data?
 
