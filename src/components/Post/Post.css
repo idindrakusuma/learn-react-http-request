@@ -9,6 +9,10 @@
     cursor: pointer;
 }
 
+.Post h1 {
+    font-size: 14px;
+}
+
 .Post:hover,
 .Post:active {
     background-color: #C0DDF5;
