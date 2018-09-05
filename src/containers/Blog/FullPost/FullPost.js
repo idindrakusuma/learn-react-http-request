@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from '../../common/api.service'
+import axios from '../../../common/api.service'
 
 import classes from './FullPost.css';
 

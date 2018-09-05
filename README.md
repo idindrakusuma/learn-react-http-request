@@ -73,3 +73,7 @@ baru setelah itu bisa di import di file lain,
 import axios from './common/api.service'
 // then call axios as reguler way 
 ```
+
+### React Router
+2 package added for using Routing in react, :
+- `npm install -s react-router react-router-dom`
