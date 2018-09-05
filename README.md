@@ -1,4 +1,4 @@
-# Learn React Http Request
+# Learn React Http Request & React Router
 
 ## Rangkuman Belajar
 
@@ -75,5 +75,35 @@ import axios from './common/api.service'
 ```
 
 ### React Router
+React Router adalah sebuah `package` yang berfungsi untuk menjadikan aplikasi react seperti multipage. example:
+```
+domain.com/profile
+domain.com/users
+dan lain sebagainya
+```
 2 package added for using Routing in react, :
 - `npm install -s react-router react-router-dom`
+
+### Absolute Path vs Relative Path
+- Absolute path
+```
+domain: example.com
+
+pathname: this.props.match.url + '/new-post'
+
+hasilnya: example.com/new-post
+
+domain : example.com/new
+hasilnya tetep: example.com/new-post
+```
+- Relative Path
+```
+example.com
+
+pathname: '/new-post'
+
+hasilnya: example.com/new-post
+
+domain : example.com/new
+hasilnya tetep: example.com/new/new-post
+```

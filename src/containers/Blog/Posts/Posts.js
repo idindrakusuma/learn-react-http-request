@@ -11,6 +11,7 @@ class Posts extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         axios.get('/posts')
             .then(res => {
                 const posts = res.data.slice(0, 4);
@@ -28,7 +29,6 @@ class Posts extends Component {
                 // this.setState({ error: true })
             })
     }
-
 
     postSelectedHandler = (id) => {
         this.setState({
