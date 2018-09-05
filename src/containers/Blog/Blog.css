@@ -21,3 +21,7 @@
 .Blog li a:active {
     color: coral;
 }
+
+.Active {
+    color: coral !important;
+}

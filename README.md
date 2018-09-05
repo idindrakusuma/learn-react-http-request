@@ -107,3 +107,17 @@ hasilnya: example.com/new-post
 domain : example.com/new
 hasilnya tetep: example.com/new/new-post
 ```
+
+### Style the Active Link
+
+for styling active route, you can use `NavLink`.
+```js
+import {Route, NavLink} from 'react-route-dom';
+
+//use? default will be add class="active"
+<NavLink to='/new-post'> New Post </NavLink>
+// with custom active class?
+<NavLink to='/new-post' activeClassName="my-active"> New Post </NavLink>
+// with custom styleInline?
+<NavLink to='/new-post' activeStyle={{textAlign: 'center'}}> New Post </NavLink>
+```
