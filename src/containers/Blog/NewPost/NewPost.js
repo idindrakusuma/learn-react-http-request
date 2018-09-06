@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from '../../../common/api.service';
+import axios from '../../../common/axios.service';
 
 import classes from './NewPost.css';
 
@@ -7,7 +7,15 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Indra Kusuma'
+    }
+
+    setNullStateHandler = () => {
+        this.setState({
+            title: '',
+            content: '',
+            author: 'Indra Kusuma'
+        })
     }
 
     newPostHandler = () => {
@@ -17,9 +25,11 @@ class NewPost extends Component {
             author: this.state.author
         }
 
-        axios.post('/posts', data)
+        axios.post('/posts.json', data)
             .then(res => {
-                console.log(res)
+                console.log(res.data)
+                alert('Post successfull!')
+                this.setNullStateHandler();
             })
             .catch(err => {
                 console.log(err)
@@ -37,7 +47,7 @@ class NewPost extends Component {
                 <textarea rows="4" value={this.state.content} onChange={(event) => this.setState({content: event.target.value})} />
                 <label>Author</label>
                 <select value={this.state.author} onChange={(event) => this.setState({author: event.target.value})}>
-                    <option value="Max">Max</option>
+                    <option value="Indra Kusuma">Indra Kusuma</option>
                     <option value="Manu">Manu</option>
                 </select>
                 <button onClick={this.newPostHandler}>Add Post</button>
