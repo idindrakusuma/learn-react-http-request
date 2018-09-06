@@ -7,19 +7,39 @@ class FullPost extends Component {
     state = {
         loadedPost: null
     }
+    
+    componentWillUnmount () {
+        this.isCancelled = true;
+    }
 
     componentDidMount () {
-        console.log(this.props);
-        if(this.props.match.params.id) {
-            if(this.state.loadedPost && this.state.loadedPost.id === this.props.id) return;
-            axios.get('/posts/' + this.props.match.params.id + '.json')
-                .then(res => {
-                    this.setState({ loadedPost: res.data })
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+        console.log('component did mount');
+        if (this.props.match.params.id) {
+            if (this.state.loadedPost && this.state.loadedPost.id === this.props.match.params.id) return;
+            !this.isCancelled && this.fetchDatahandler();
         }
+    }
+
+    componentDidUpdate () {
+        console.log('component did update');
+        if (this.state.loadedPost.id === this.props.match.params.id) return;
+        else this.fetchDatahandler();
+    }
+
+
+    fetchDatahandler = () => {
+        axios.get('/posts/' + this.props.match.params.id + '.json')
+            .then(res => {
+                let data = res.data;
+                let updatedData = {
+                    ...data,
+                    id: this.props.match.params.id
+                }
+                 this.setState({ loadedPost: updatedData })
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     deletePostHandler = () => {

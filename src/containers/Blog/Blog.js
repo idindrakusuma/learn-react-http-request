@@ -5,7 +5,7 @@ import classes from './Blog.css';
 
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
+// import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
     state = {
@@ -36,9 +36,9 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/" exact component={Posts}/>
                     <Route path="/new-post" component={NewPost}/>
-                    <Route path="/post/:id" component={FullPost}/>  
+                    <Route path="/" component={Posts}/>
+                    {/* <Route path="/post/:id" component={FullPost}/> */}
                 </Switch>
             </div>
         );
