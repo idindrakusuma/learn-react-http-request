@@ -167,7 +167,7 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   modules: true,
-                  localIndentName: '[name]__[local]__[hash:64:5]'
+                  localIndentName: '[name]__[local]__[hash:base64:5]'
                 },
               },
               {

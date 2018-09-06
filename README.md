@@ -121,3 +121,12 @@ import {Route, NavLink} from 'react-route-dom';
 // with custom styleInline?
 <NavLink to='/new-post' activeStyle={{textAlign: 'center'}}> New Post </NavLink>
 ```
+
+### Route Swicth
+```ks
+<Switch> 
+    <Route path='/profile' component={ Profile}>
+    <Route path='/:id' component={ Profile}>
+<Switch>
+```
+Switch akan melakukan rendering route satu kali saja, jadi untuk kasus diatas, sangat cocok diterapkan switch.

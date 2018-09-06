@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+.FullPost h3 {
+    text-transform: capitalize;
+}
+
 .Edit label {
     display: block;
     color: grey;
