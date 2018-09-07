@@ -5,34 +5,46 @@ import classes from './FullPost.css';
 
 class FullPost extends Component {
     state = {
-        loadedPost: { id: null }
+        loadedPost: null
     }
 
     componentDidMount () {
-        console.log('component did mount');
-        if (this.props.match.params.id) {
-            this.fetchDatahandler();
-        }
+        console.log('[FullPost.js] componentDidMount..');
+        this.fetchDatahandler();
     }
 
     componentWillUnmount () {
-        console.log('componentWillUnMount');
+        console.log('[FullPost.js] componentWillUnMount');
         this.setState({ loadedPost: null })
     }
 
-    fetchDatahandler = () => {
-        axios.get('/posts/' + this.props.match.params.id + '.json')
-            .then(res => {
-                let data = res.data;
-                let updatedData = {
-                    ...data,
-                    id: this.props.match.params.id
-                }
-                 this.setState({ loadedPost: updatedData })
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    componentDidUpdate (nextProps) {
+        console.log('[FullPost.js] componentDidUpdate');
+        if (nextProps.match.params.id === this.props.match.params.id) return false;
+        this.fetchDatahandler();
+    }
+
+    shouldComponentUpdate(nextProps, nextState) { 
+        return (this.props.match.params.id && !this.state.loadedPost) || (nextState.loadedPost !== this.state.loadedPost) || (nextProps.match.params.id !== this.props.match.params.id);
+    }
+
+    fetchDatahandler () {
+        console.log('[FullPost.js] Try to fetch data from server..');
+        if (this.props.match.params.id) {
+            console.log('[FullPost.js] Request data from server...');
+            axios.get('/posts/' + this.props.match.params.id + '.json')
+                .then(res => {
+                    let data = res.data;
+                    let updatedData = {
+                        ...data,
+                        id: this.props.match.params.id
+                    }
+                    this.setState({ loadedPost: updatedData })
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
     }
 
     deletePostHandler = () => {
@@ -47,13 +59,9 @@ class FullPost extends Component {
     }
 
     render () {
-        if (this.state.loadedPost.id !== this.props.match.params.id) {
-            console.log('request data..');
-            this.fetchDatahandler()
-        };
 
         let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
-        if(this.props.id) post = <p style={{textAlign: 'center'}}>loading..</p>;
+        if(this.props.match.params.id) post = <p style={{textAlign: 'center'}}>loading..</p>;
         
         if(this.state.loadedPost) {
             post = (
