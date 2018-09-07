@@ -14,6 +14,18 @@ class Posts extends Component {
 
     componentDidMount() {
         // console.log(this.props);
+        this.fetchPostsHanlder();
+    }
+
+    componentDidUpdate () {
+        this.fetchPostsHanlder();
+    }
+
+    postSelectedHandler = (id) => {
+        this.props.history.push({ pathname: '/post/' + id });
+    }
+
+    fetchPostsHanlder = () => {
         axios.get('/posts.json')
             .then(res => {
                 const posts = res.data;
@@ -31,10 +43,6 @@ class Posts extends Component {
             .catch(err => {
                 console.log(err)
             })
-    }
-
-    postSelectedHandler = (id) => {
-        this.props.history.push({ pathname: '/post/' + id });
     }
     
   render () {

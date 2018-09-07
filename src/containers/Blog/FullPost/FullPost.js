@@ -5,27 +5,20 @@ import classes from './FullPost.css';
 
 class FullPost extends Component {
     state = {
-        loadedPost: null
-    }
-    
-    componentWillUnmount () {
-        this.isCancelled = true;
+        loadedPost: { id: null }
     }
 
     componentDidMount () {
         console.log('component did mount');
         if (this.props.match.params.id) {
-            if (this.state.loadedPost && this.state.loadedPost.id === this.props.match.params.id) return;
-            !this.isCancelled && this.fetchDatahandler();
+            this.fetchDatahandler();
         }
     }
 
-    componentDidUpdate () {
-        console.log('component did update');
-        if (this.state.loadedPost.id === this.props.match.params.id) return;
-        else this.fetchDatahandler();
+    componentWillUnmount () {
+        console.log('componentWillUnMount');
+        this.setState({ loadedPost: null })
     }
-
 
     fetchDatahandler = () => {
         axios.get('/posts/' + this.props.match.params.id + '.json')
@@ -54,10 +47,14 @@ class FullPost extends Component {
     }
 
     render () {
+        if (this.state.loadedPost.id !== this.props.match.params.id) {
+            console.log('request data..');
+            this.fetchDatahandler()
+        };
+
         let post = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
-        if(this.props.id) {
-            post = <p style={{textAlign: 'center'}}>loading..</p>;
-        }
+        if(this.props.id) post = <p style={{textAlign: 'center'}}>loading..</p>;
+        
         if(this.state.loadedPost) {
             post = (
                 <div className={classes.FullPost}>
