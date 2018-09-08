@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from '../../../common/axios.service';
 
 import classes from './NewPost.css';
@@ -7,15 +8,8 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Indra Kusuma'
-    }
-
-    setNullStateHandler = () => {
-        this.setState({
-            title: '',
-            content: '',
-            author: 'Indra Kusuma'
-        })
+        author: 'Indra Kusuma',
+        submitted: false
     }
 
     newPostHandler = () => {
@@ -27,19 +21,23 @@ class NewPost extends Component {
 
         axios.post('/posts.json', data)
             .then(res => {
-                console.log(res.data)
-                alert('Post successfull!')
-                this.setNullStateHandler();
+                alert('Post successfull!');
+                this.setState({ submitted: true });
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             })
         
     }
 
     render () {
+        let redirect = null;
+        if (this.state.submitted) {
+            redirect = <Redirect to="/" />
+        }
         return (
             <div className={classes.NewPost}>
+                { redirect }
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
