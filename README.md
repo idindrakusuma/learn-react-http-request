@@ -130,3 +130,13 @@ import {Route, NavLink} from 'react-route-dom';
 <Switch>
 ```
 Switch akan melakukan rendering route satu kali saja, jadi untuk kasus diatas, sangat cocok diterapkan switch.
+
+### Route history.replace
+
+Berfungsi untuk mengganti route ketika post. Nah ini cocok banget digunakan untuk kasus seperti NewPost.js
+cara penggunaan?
+
+```js
+// example in stateful component
+this.props.history.replace('/posts')
+```
