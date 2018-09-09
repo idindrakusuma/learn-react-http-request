@@ -22,7 +22,8 @@ class NewPost extends Component {
         axios.post('/posts.json', data)
             .then(res => {
                 alert('Post successfull!');
-                this.setState({ submitted: true });
+                this.props.history.replace('/posts');
+                // this.setState({ submitted: true });
             })
             .catch(err => {
                 console.log(err);

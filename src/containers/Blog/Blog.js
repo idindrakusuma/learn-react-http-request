@@ -39,7 +39,6 @@ class Blog extends Component {
                     <Route path="/new-post" component={NewPost}/>
                     <Redirect from="/posts" to="/" />
                     <Route path="/" component={Posts}/>
-                    {/* <Route path="/post/:id" component={FullPost}/> */}
                 </Switch>
             </div>
         );
